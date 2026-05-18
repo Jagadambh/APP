@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+}
+
+.jhalar {
+    background-color: #fff;
+    border-radius: 50px;
+    height: 300px;
+    width: 500px;        
+    border: 5px solid black;
+    overflow: hidden;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.jhalar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    padding: 8px;
+}
+
+.jhalar:hover {
+    border: 10px solid rgb(255, 0, 0);
+    border-radius: 25px;
+    background-color: rgb(245, 255, 135); 
+}

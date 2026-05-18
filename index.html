@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>POOJA BHANDAAR</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+  <!-- Trial Message -->
+  <div id="trialMsg" style="
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: green;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: none;
+    z-index: 1000;
+  ">
+    🎉 You got 25s free trial!
+  </div>
+
+  <!-- NAVBAR -->
+  <div id="navbar">
+    <a id="logo" href="#"> POOJA BHANDAAR </a>
+    <a href="#">My Cart 🛒 </a>
+    <a href="#">Contact Us 📞 </a>
+
+    <input type="text" id="searchInput" placeholder="search here">
+    <button onclick="searchProduct()">Search</button>
+
+    <a href="#">Wishlist❤️</a>
+  </div>
+
+  <!-- SEARCH RESULTS -->
+  <div id="results" style="padding:10px; background:white;"></div>
+
+  <!-- SLIDER -->
+  <div class="slider">
+    <div class="slide-track">
+
+      <!-- PRODUCTS -->
+      <div class="slide"><div class="product-box"><img src="LADDU_4.png"><div class="product-name">Laddu Gopal Dress ₹90</div></div></div>
+      <div class="slide"><div class="product-box"><img src="havan_4.jpg"><div class="product-name">Havan Samagri ₹50</div></div></div>
+      <div class="slide"><div class="product-box"><img src="MOTI_MALA_2.png"><div class="product-name">Artificial Mala ₹90</div></div></div>
+      <div class="slide"><div class="product-box"><img src="DIYA_7.png"><div class="product-name">Diya ₹30</div></div></div>
+      <div class="slide"><div class="product-box"><img src="JHALAR_2.png"><div class="product-name">Jhalar</div></div></div>
+      <div class="slide"><div class="product-box"><img src="laddu_0.png"><div class="product-name">Laddu Gopal Dress ₹79</div></div></div>
+      <div class="slide"><div class="product-box"><img src="DIYA_2.png"><div class="product-name">Diya ₹45</div></div></div>
+      <div class="slide"><div class="product-box"><img src="LACE_10.png"><div class="product-name">Chunri ₹60</div></div></div>
+      <div class="slide"><div class="product-box"><img src="JHALAR_4.png"><div class="product-name">Jhalar ₹122</div></div></div>
+      <div class="slide"><div class="product-box"><img src="SAI_BABA.png"><div class="product-name">Sai Baba Dress ₹80</div></div></div>
+      <div class="slide"><div class="product-box"><img src="MOTI_MALA.png"><div class="product-name">Moti Mala ₹99</div></div></div>
+      <div class="slide"><div class="product-box"><img src="chunri_h.jpg"><div class="product-name">Chunri ₹60</div></div></div>
+      <div class="slide"><div class="product-box"><img src="nice.png"><div class="product-name">Canvas Candle ₹125</div></div></div>
+      <div class="slide"><div class="product-box"><img src="CAMPHOR_1.png"><div class="product-name">Camphor ₹79</div></div></div>
+      <div class="slide"><div class="product-box"><img src="STICKER-1.png"><div class="product-name">Sticker ₹20</div></div></div>
+
+    </div>
+  </div>
+
+  <!-- SECTIONS -->
+  <div id="section-wrapper">
+    <button class="section-box" onclick="location.href='CHUNRI.HTML'">CHUNRI SECTION</button>
+    <button class="section-box" onclick="location.href='AGARBATTI.html'">AGARBATTI SECTION</button>
+    <button class="section-box" onclick="location.href='DIYA.html'">DIYA SECTION</button>
+    <button class="section-box" onclick="location.href='GHEE.html'">GHEE & PUJA OIL SECTION</button>
+    <button class="section-box" onclick="location.href='JHALAR.html'">JHALAR SECTION</button>
+    <button class="section-box" onclick="location.href='DRESS.html'">DRESS SECTION</button>
+    <button class="section-box" onclick="location.href='MALA.html'">MALA SECTION</button>
+    <button class="section-box" onclick="location.href='STICKER.html'">STICKER SECTION</button>
+    <button class="section-box" onclick="location.href='AASAN.html'">AASAN SECTION</button>
+    <button class="section-box" onclick="location.href='CANDLE.html'">CANDLE SECTION</button>
+    <button class="section-box" onclick="location.href='HAVAN.html'">HAVAN SECTION</button>
+    <button class="section-box" onclick="location.href='utensils.html'">POOJA-UTENSILS SECTION</button>
+  </div>
+
+  <footer>
+    Made with ♥ by SONKAR <br>
+    © PUJA BHANDAAR.COM
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    function searchProduct() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      const resultsDiv = document.getElementById("results");
+
+      resultsDiv.innerHTML = "";
+
+      const products = document.querySelectorAll(".product-name");
+      let found = false;
+
+      products.forEach(product => {
+        const text = product.innerText.toLowerCase();
+
+        if (text.includes(query)) {
+          found = true;
+
+          const item = document.createElement("p");
+          item.innerText = product.innerText;
+
+          resultsDiv.appendChild(item);
+        }
+      });
+
+      if (!found) {
+        resultsDiv.innerHTML = "No products found";
+      }
+    }
+
+    // Trial popup + redirect
+    window.onload = function() {
+      const msg = document.getElementById("trialMsg");
+      msg.style.display = "block";
+
+      setTimeout(() => {
+        msg.style.display = "none";
+      }, 4000);
+
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 25000);
+    };
+  </script>
+
+</body>
+</html>

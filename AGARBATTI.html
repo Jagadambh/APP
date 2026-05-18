@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agarbatti Display</title>
+    <link rel="stylesheet" href="AGARBATTI.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- LEFT: Product List -->
+    <div class="INCENSE">
+        <div class="Agarbatti" onclick="showDetails('Premium Agarbatti', 'Long-lasting fragrance', 199, 'AGR_6.png')">
+            <img src="AGR_6.png">
+        </div>
+
+        <div class="Agarbatti" onclick="showDetails('Loban Pack', 'Strong natural aroma', 149, 'LOBAN.png')">
+            <img src="LOBAN.png">
+        </div>
+
+        <div class="Agarbatti" onclick="showDetails('Classic Pack', 'Daily पूजा use', 99, 'AGR_1.jpg')">
+            <img src="AGR_1.jpg">
+        </div>
+        
+    </div>
+
+    <!-- RIGHT: Product Details -->
+    <div class="details" id="details">
+        <h2>Select a product</h2>
+        <p>Click any item to see details</p>
+    </div>
+
+</div>
+
+<script>
+function showDetails(name, desc, price, image) {
+    document.getElementById("details").innerHTML = `
+        <img src="${image}" style="width:200px; border-radius:10px;"><br><br>
+        <h2>${name}</h2>
+        <p>${desc}</p>
+        <h3>₹${price}</h3>
+        <button>Add to Cart</button>
+        <button>Buy Now</button>
+    `;
+}
+</script>
+
+</body>
+</html>

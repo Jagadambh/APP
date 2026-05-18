@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="dashboard.css">
+<title>Dashboard</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+}
+
+/* Navbar */
+.navbar {
+  background: #131921;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar h2 {
+  margin: 0;
+}
+
+.logout-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Grid */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Card */
+.card {
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card h3 {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.price {
+  color: green;
+  font-weight: bold;
+}
+
+.card button {
+  width: 100%;
+  padding: 10px;
+  background: orange;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.card button:hover {
+  background: darkorange;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- 🔥 Navbar -->
+<div class="navbar">
+  <h2>POOJA BHANDAAR</h2>
+  <div style="display:flex; align-items:center; gap:15px;">
+
+    <!-- CART WRAPPER FIX -->
+    <div style="position: relative; display: inline-block;">
+      <button onclick="goToCart()">Cart 🛒</button>
+
+      <span id="cartCount" style="
+        position:absolute;
+        top:-8px;
+        right:-8px;
+        background:red;
+        color:white;
+        border-radius:50%;
+        padding:2px 6px;
+        font-size:12px;
+      ">0</span>
+    </div>
+
+    <button class="logout-btn" onclick="logout()">Logout</button>
+
+  </div>
+</div>
+
+<!-- 🔥 Products -->
+<div class="products" id="productContainer"></div>
+
+<script>
+// 🔐 PROTECT PAGE
+const token = localStorage.getItem("token");
+
+if (!token) {
+  alert("Access denied ❌");
+  window.location.href = "login.html";
+}
+
+// 🔥 Logout
+function logout() {
+  localStorage.removeItem("token");
+  window.location.href = "login.html";
+}
+function addToCart(product) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // check if product already exists
+  let existing = cart.find(item => item.name === product.name);
+
+  if (existing) {
+    existing.qty += 1;   // increase quantity
+  } else {
+    cart.push({ ...product, qty: 1 }); // new item with qty
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCartCount();
+  alert("Added to cart 🛒");
+}
+// 🛒 Go to cart page
+function goToCart() {
+  window.location.href = "cart.html";
+}
+
+// 🔢 Update cart count
+function updateCartCount() {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  document.getElementById("cartCount").innerText = cart.length;
+}
+
+// 📦 Products list
+const products = [
+  { name: "Supari (100g)", price: "₹99", image:"images/supari.jpg" },
+  { name: "Paan (11 pcs)", price: "₹33", image: "images/paan.jpg" },
+  { name: "Dhaan(50g)", price: "₹21", image: "images/dhaan.jpg" },
+  { name: "Til (50g)", price: "₹19", image: "images/til.jpg" },
+  { name: "Joo (50g)", price: "₹19", image: "images/joo.jpg" },
+  { name: "Arwa Chawal(250g)", price: "₹49", image: "images/arwa.jpg" },
+  { name: "Dhaniya (50g)", price: "₹39", image: "images/dhaniya.jpg" },
+  { name: "Pila Sarso (100g)", price: "₹49", image: "images/pila_sarso.jpg" },
+  { name: "Haldi (50g)", price: "₹29", image:"images/haldi.jpg" },
+  { name: "Haldi Powder (50g)", price: "₹39", image: "images/haldi_powder.jpg" },
+  { name: "Elaichidana Batasa", price: "₹79", image: "images/elaichi_batasa.jpg" },
+  { name: "Nariyal (1 Pc.)", price: "₹49", image: "images/naryal.jpg" },
+  { name: "Gadi Gola (120g-150g)", price: "₹79", image: "images/gadi.jpg" },
+  { name: "Havan Nariyal", price: "₹25", image: "images/sukha_.jpg" },
+  { name: "Kalawa", price: "₹49", image: "images/kalawa.jpg" },
+  { name: "Moli", price: "₹49", image: "images/moli.jpg" },
+  { name: "Pila Salu (1 mtr)", price: "₹49", image: "images/pila.jpg" },
+  { name: "Lal Salu (1 mtr)", price: "₹49", image: "images/images.jpg" },
+  { name: "Attar (Kasturi)", price: "₹49", image: "images/atar.jpg" },
+  { name: "Attar (Jasmine)", price: "₹49", image: "images/attar.jpg" },
+];
+
+const container = document.getElementById("productContainer");
+
+// 🧠 Render products
+products.forEach(p => {
+  const card = document.createElement("div");
+  card.classList.add("card");
+
+  card.innerHTML = `
+    <img src="${p.image}" />
+    <h3>${p.name}</h3>
+    <p class="price">${p.price}</p>
+    <button class="addBtn">Add to Cart</button>
+  `;
+
+  card.querySelector(".addBtn").addEventListener("click", () => {
+    addToCart(p);
+  });
+
+  container.appendChild(card);
+});
+
+// 🔢 Initial cart count load
+updateCartCount();
+</script>
+
+<!-- Footer -->
+<footer style="text-align:center; padding:10px;">
+  Made with ♥ by SONKAR <br>
+  © POOJA BHANDAAR.COM
+</footer>
+
+</body>
+</html>

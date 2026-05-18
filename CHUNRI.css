@@ -1,0 +1,86 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: left;
+}
+.chunri-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-items: center;
+}
+.chunri_small {
+    background-color: rgb(108, 214, 91);
+    border: 5px solid black;
+    border-radius: 15px;
+    height: 350px;
+    width: 100%;
+    max-width: 250px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.chunri_small:hover {
+    border: 10px solid red;
+    border-radius: 25px;
+    background-color: rgb(140, 255, 53);
+}
+
+.chunri_medium {
+    background-color: rgb(217, 104, 213);
+    border: 5px solid black;
+    border-radius: 15px;
+    height: 400px;
+    width: 100%;
+    max-width: 250px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.chunri_medium:hover {
+    background-color: yellow;
+}
+.chunri {
+    background-color: rgb(100, 211, 255);
+    border: 5px solid black;
+    border-radius: 15px;
+    height: 450px;
+    width: 100%;
+    max-width: 250px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.chunri:hover {
+    background-color: yellow;
+}
+img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+.CHUNRI_NAME {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+.CHUNRI_NAME:hover {
+    border: 0.5rem solid rgb(255, 0, 162);
+    border-radius: 10px;
+}
+@media (max-width: 1024px) {
+    .chunri-container {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+@media (max-width: 600px) {
+    .chunri-container {
+        grid-template-columns: 1fr; 
+    }
+}
