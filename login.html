@@ -1,43 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login Page</title>
-  <link rel="stylesheet" href="login.css" />
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-</head>
-<body>
-  <section class="home">
-    <div class="content">
-      <h2>WELCOME TO POOJA WEB.</h2>
-      <p>All your pooja essentials are available at this one website.</p>
-    </div>
-    <div class="wrapper-login">
-      <h2>MEMBER LOGIN</h2>
-      <form id="loginForm">
-        <div class="input-box">
-          <ion-icon name="mail-outline"></ion-icon>
-          <input type="email" required class="floating-input" id="email" />
-          <label for="email">Enter your E-mail</label>
-        </div>
-        <div class="input-box">
-          <ion-icon name="lock-closed-outline"></ion-icon>
-          <input type="password" required class="floating-input" id="password" />
-          <label for="password">Enter your Password</label>
-        </div>
-        <div class="remember-forgot">
-          <label><input type="checkbox" /> Remember me!</label>
-          <a href="#">Forgot Password</a>
-        </div>
-        <button type="submit" class="btn">LOGIN HERE</button><br>
-        <p>Not a member? <a href="signup.html">Sign Up Now!</a></p>
-      </form>
-    </div>
-  </section>
- <script>
+<script>
   const inputs = document.querySelectorAll('.floating-input');
+
   inputs.forEach(input => {
     input.addEventListener('input', () => {
       if (input.value.trim() !== '') {
@@ -48,43 +11,54 @@
     });
   });
 
-  // 🔥 LOGIN LOGIC
+  // LOGIN LOGIC
   const form = document.getElementById("loginForm");
 
   form.addEventListener("submit", async (e) => {
-    e.preventDefault(); // prevent page reload
+    e.preventDefault();
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
     try {
-      const response = await fetch("http://localhost:5000/login", {
+
+const response = await fetch("https://app-2-xfb1.onrender.com/login", {
         method: "POST",
+
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ email, password })
+
+        body: JSON.stringify({
+          email,
+          password
+        })
       });
 
       const data = await response.json();
 
       if (response.ok) {
+
         alert("Login Successful ✅");
 
-        // 🔐 store token
+        // store token
         localStorage.setItem("token", data.token);
 
-        // redirect (optional)
+        // redirect
         window.location.href = "dashboard.html";
+
       } else {
+
         alert(data.message || "Login Failed ❌");
+
       }
 
     } catch (err) {
+
       console.error(err);
+
       alert("Server error ❌");
+
     }
   });
 </script>
-</body>
-</html>
