@@ -10,12 +10,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// 🔥 Connect to MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/authDB")
-.then(() => console.log("MongoDB Connected"))
+//  Connect to MongoDB
+mongoose.connect("mongodb+srv://sonkarharish52584_db_user:Harish1919@cluster0.e2sbv4f.mongodb.net/poojaDB?retryWrites=true&w=majority").then(() => console.log("MongoDB Connected"))
 .catch(err => console.log(err));
 
-// 🔥 User Schema
+//  User Schema
 const userSchema = new mongoose.Schema({
     name: String,
     email: { type: String, unique: true },
@@ -24,7 +23,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
-// 🔥 Signup Route
+//  Signup Route
 app.post("/signup", async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -46,7 +45,7 @@ app.post("/signup", async (req, res) => {
     }
 });
 
-// 🔥 Login Route
+//  Login Route
 app.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -79,7 +78,7 @@ app.post("/login", async (req, res) => {
     }
 });
 
-// 🔥 Start Server
+//  Start Server
 app.listen(5000, () => {
     console.log("Server running on port 5000 🚀");
 });
