@@ -1,101 +1,107 @@
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
-    transition: all .2s ease;
+    transition: all .01s ease;
 }
 
 body {
-    overflow-x: hidden;
+    place-items: center;
+    overflow-x: hidden; 
     background-image: url('bg_home.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    font-family: Arial, sans-serif;
+    overflow-x: hidden;
 }
 
-/* NAVBAR */
-
-#navbar {
-    width: 100%;
+.navbar {
+    color: rgb(248, 245, 245);
     background-color: black;
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-
-    gap: 1rem;
-    padding: 1rem;
 }
 
 #logo {
+    position: relative;
+    left: 1rem;
+    top: 1rem;
     color: #00ff15;
+    border-radius: 20%;
+    background-color: black;
     font-size: 2rem;
-    font-weight: bold;
-}
-
-a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
 }
 
 input {
     color: black;
-    padding: 0.6rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px;
+    border-color: bisque;
+    position: relative;
+    left: 1rem;
+    top: 1rem;
 }
 
-#searchInput {
+#navbar {
+    height: 5rem;
     width: 100%;
-    max-width: 400px;
+    background-color: rgb(0, 0, 0);
+}
 
-    font-size: 1rem;
-    padding: 0.6rem;
+.section-box {
+    width: 325px;
+    margin: 5px;
+    padding: 5px;
+    position: relative;
+    border: 3px solid rgb(255, 0, 115);
+    background-color: white;
+    color: black;
+    text-align: center;
+    font-style: normal;
+    border-radius: 100px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+}
 
-    border-radius: 5px;
+#section-wrapper {
+    gap: 1rem;
+    padding: 1.2rem;
+}
+
+.section-box:hover {
+    background-color: aquamarine;
+    font-weight: bold;
+    box-shadow: 10px 5px 5px rgb(252, 0, 181);
 }
 
 button {
     background-color: rgb(234, 181, 49);
+    position: relative;
+    left: 1rem;
+    top: 1rem;
+    border: #ef0000;
     color: black;
-    border: none;
-    padding: 0.6rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
 }
 
-button:hover {
-    background-color: orange;
+a {
+    margin-right: 2.9rem;
+    position: relative;
+    left: 1rem;
+    top: 1rem;
+    color: white;
+    text-decoration: none;
 }
 
-/* SEARCH RESULTS */
-
-#results {
-    width: 100%;
-    color: black;
-    text-align: center;
-}
-
-/* SLIDER */
 
 .slider {
     height: 20rem;
-    margin: 3rem auto;
+    margin: 4rem auto;       
     position: relative;
-    width: 100%;
-    overflow: hidden;
+    width: 100%;             
+    overflow: hidden;       
 }
 
 .slide-track {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: nowrap;       
     gap: 1.2rem;
-    width: max-content;
+    width: max-content;      
     animation: scroll 45s linear infinite;
     padding: 0.5rem 0;
     align-items: center;
@@ -106,40 +112,24 @@ button:hover {
 }
 
 @keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
 }
 
 .slide {
-    flex: 0 0 auto;
+    flex: 0 0 auto;          
     height: 15rem;
     width: 10rem;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: 1rem;
     margin: .8rem;
-
     background-color: bisque;
     border: .4rem solid rgb(122, 81, 255);
     border-radius: 1rem;
-
     box-shadow: .5rem .5rem 1rem rgba(0, 0, 0, 0.3);
-
     transition: transform 0.3s ease;
-}
-
-.slide:hover {
-    transform: scale(1.05);
-    background-color: rgb(127, 208, 255);
-    box-shadow: .8rem .8rem .8rem rgb(121, 116, 207);
 }
 
 .slide img {
@@ -150,29 +140,37 @@ button:hover {
     transition: transform 0.3s ease;
 }
 
-/* PRODUCT BOX */
+.slide:hover {
+    transform: scale(1.05);
+    background-color: rgb(127, 208, 255);
+    box-shadow: .8rem .8rem .8rem rgb(121, 116, 207);
+}
+
+
+#section-wrapper {                
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 0.1rem;
+    padding: 1.2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
 .product-box {
     border: .15rem solid #ff0202;
     border-radius: .8rem;
     padding: .8rem;
-
-    width: 100%;
+    width: 100%;             
     text-align: center;
-
     box-shadow: 0 .3rem .8rem rgba(0,0,0,0.1);
     margin: .9rem auto;
-
-    background-color: white;
 }
 
 .product-box img {
     width: 100%;
-    height: 160px;
-
+    height: 160px;           
     object-fit: cover;
     display: block;
-
     margin-bottom: .5rem;
 }
 
@@ -182,107 +180,39 @@ button:hover {
     color: #333;
 }
 
-/* SECTION WRAPPER */
-
-#section-wrapper {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 1rem;
-
-    padding: 1.2rem;
-
-    max-width: 1200px;
-
-    margin: 0 auto;
-}
-
-.section-box {
-    width: 100%;
-    max-width: 325px;
-
-    margin: auto;
-
-    padding: 1rem;
-
-    border: 3px solid rgb(255, 0, 115);
-
-    background-color: white;
-    color: black;
-
-    text-align: center;
-
-    border-radius: 100px;
-
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-
-    font-weight: bold;
-}
-
-.section-box:hover {
-    background-color: aquamarine;
-
-    box-shadow: 10px 5px 5px rgb(252, 0, 181);
-}
-
-/* IMAGES */
-
 img {
     width: 100%;
-    transition: transform 0.2s ease;
+    transition: transform 0.1s ease;  
 }
 
 img:hover {
-    transform: scale(1.05);
+    transform: scale(1.05);  
 }
 
-/* FOOTER */
+#searchInput {
+    width: 400px;
+    height: 20px;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.slider::before,
+.slider::after {
+    content: '';            
+    height: 100%;
+    position: absolute;
+    width: 15%;
+    z-index: 2;
+}
 
 footer {
     background-color: #060000;
     color: white;
-
     text-align: center;
-
+    align-items: center;
     padding: 1rem;
-
     font-size: 1rem;
-
     width: 100%;
-}
-
-/* MOBILE RESPONSIVE */
-
-@media (max-width: 768px) {
-
-    #navbar {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    #logo {
-        font-size: 1.5rem;
-    }
-
-    #searchInput {
-        width: 90%;
-    }
-
-    #section-wrapper {
-        grid-template-columns: 1fr;
-    }
-
-    .slide {
-        width: 8rem;
-        height: 13rem;
-    }
-
-    .product-name {
-        font-size: 0.9rem;
-    }
-
-    footer {
-        padding: 1rem;
-    }
+    height: 20px;
 }
